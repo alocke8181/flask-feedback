@@ -6,10 +6,18 @@
     <title>Feedback</title>
 </head>
 <body>
-    <h1>Feedback</h1>
+    <a href='/'><h1>Feedback</h1></a>
     <hr>
+    {% for msg in get_flashed_messages() %}
+        <p>{{msg}}</p>
+    {% endfor %}
     {%block content%}
     {%endblock%}
-
+    <hr>
+    {% if 'cur_user' in session %}
+        <a href="/logout"><p>Logout</p></a>
+    {% else %}
+        <a href="/login"><p>Login</p></a>
+    {% endif %}
 </body>
 </html>
