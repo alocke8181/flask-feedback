@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Are you sure you want to delete your account?</h2>
+<h3>This cannot be undone!</h3>
+<p><a href="/users/{{username}}/delete">Yes I'm Sure!</a></p>
+<p><a href="/users/{{username}}">No Take Me Back!</a></p>
+
+{% endblock %}

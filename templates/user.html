@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>User Info</h2>
+<ul>
+    <li>Username: {{user.username}}</li>
+    <li>Email: {{user.email}}</li>
+    <li>First Name: {{user.first_name}}</li>
+    <li>Last Name: {{user.last_name}}</li>
+</ul>
+<p><a href="/users/{{user.username}}/delete/confirm">Delete Account</a></p>
+<p><a href="/users/{{user.username}}/feedback/add">Add Feedback</a></p>
+
+
+{% if feedbacks[0] == null %}
+    <p>You have not submitted any feedback yet!</p>
+{% else %}
+    {% for feedback in feedbacks %}
+    <div class="feedback" style="border: 2px solid black;">
+        <h3>{{feedback.title}}</h3>
+        <p>{{feedback.content}}</p>
+        <a href="/feedback/{{feedback.id}}/update">Update</a>
+        <a href="/feedback/{{feedback.id}}/delete">Delete</a>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

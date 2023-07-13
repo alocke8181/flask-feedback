@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Recent Feedback</h2>
+
+{% if feedbacks[0] == null %}
+    <p>No feedback to display</p>
+{% else %}
+    {% for feedback in feedbacks %}
+    <div class="feedback" style="border: 2px solid black;">
+        <h3>{{feedback.title}}</h3>
+        <p>{{feedback.content}}</p>
+        <p><i>Submitted by: {{feedback.username}} at {{feedback.created_at}}</i></p>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

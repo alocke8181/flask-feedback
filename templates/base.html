@@ -15,9 +15,11 @@
     {%endblock%}
     <hr>
     {% if 'cur_user' in session %}
+        <a href="/users/{{session.get('cur_user')}}"><p>Profile</p></a>
         <a href="/logout"><p>Logout</p></a>
     {% else %}
         <a href="/login"><p>Login</p></a>
+        <a href="/register"><p>Register</p></a>
     {% endif %}
 </body>
 </html>

@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-from wtforms import StringField, FloatField, BooleanField
 from flask_bcrypt import Bcrypt
+import datetime
 
 bcrypt = Bcrypt()
 
@@ -25,6 +24,7 @@ class User(db.Model):
 
     last_name = db.Column(db.String(30), nullable=False)
 
+    feedbacks = db.Relationship('Feedback', cascade='all, delete-orphan')
 
     @classmethod
     def register(cls, username, password, email, first_name, last_name):
@@ -44,3 +44,19 @@ class User(db.Model):
             return user
         else:
             return False
+
+#==============================================================================================
+
+class Feedback(db.Model):
+    """Feedback"""
+    __tablename__ = 'feedbacks'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    title = db.Column(db.String(100), nullable=False)
+
+    content = db.Column(db.Text, nullable=False)
+
+    username = db.Column(db.Text, db.ForeignKey('users.username'))
+
+    created_at = db.Column(db.DateTime, nullable=False, default = datetime.datetime.now)
